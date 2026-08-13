@@ -148,10 +148,10 @@ function Home({ profiles, onStart, onAtlas }: { profiles: Profile[]; onStart: ()
         <div className="hero-copy">
           <span className="eyebrow">AI INTERACTION TYPE INDICATOR / V1.0</span>
           <h1>你和 AI<br />到底是什么关系？</h1>
-          <p className="hero-lede">MBTI 测你是什么人，AITI 测你如何与 AI 相处。24 个真实情境，识别你的 AI 使用人格。</p>
+          <p className="hero-lede">MBTI 测你是什么人，AITI 看你一打开 AI 就会变成什么人。24 道题，都是你可能真干过的事。</p>
           <div className="hero-actions">
-            <button className="primary-button" onClick={onStart}>开始鉴定 <span>→</span></button>
-            <button className="text-button" onClick={onAtlas}>先偷看人格图鉴</button>
+            <button className="primary-button" onClick={onStart}>开测 <span>→</span></button>
+            <button className="text-button" onClick={onAtlas}>先看看都有哪些人</button>
           </div>
           <div className="hero-meta"><span>24 题</span><span>约 5 分钟</span><span>19 种人格</span></div>
         </div>
@@ -168,8 +168,8 @@ function Home({ profiles, onStart, onAtlas }: { profiles: Profile[]; onStart: ()
       <section className="manifesto">
         <span className="section-number">01 / WHAT IS AITI</span>
         <div>
-          <h2>不是测你“懂不懂 AI”。<br />是看你在 AI 面前，<em>变成了谁。</em></h2>
-          <p>有人额度重置就开蹬，有人每个 Demo 都预言 AGI，有人对模型说谢谢，有人坚持旧窗口比新模型更懂自己。AITI 把这些真实又荒谬的使用习惯，变成一套属于 AI 时代的人格坐标。</p>
+          <h2>这不考你懂不懂 AI。<br />只看你一用 AI，<em>会暴露什么习惯。</em></h2>
+          <p>有人额度一重置就开蹬，有人看完一个 Demo 就宣布 AGI 降临。有人每次都对模型说谢谢，也有人守着旧窗口不肯走，坚信它比新模型更懂自己。AITI 测的就是这些事。</p>
         </div>
       </section>
       <section className="trait-strip" aria-label="测试维度">
@@ -235,7 +235,7 @@ function ResultScreen({ result, profiles, copied, onCopy, onDownload, onRetake, 
           <span>{result.result.code}</span>
         </div>
         <div className="result-title">
-          <span>你的 AI 人格是</span>
+          <span>鉴定完了，你是</span>
           <h1>{result.result.name}</h1>
           <p>“{result.result.tagline}”</p>
           <div className="result-badges">
@@ -246,15 +246,15 @@ function ResultScreen({ result, profiles, copied, onCopy, onDownload, onRetake, 
       </div>
       <div className="result-grid">
         <article className="result-description">
-          <span className="section-label">PROFILE / 人格判词</span>
+          <span className="section-label">PROFILE / 这说的是你吗</span>
           <p>{result.result.description}</p>
           <div className="strength-grid">
-            <div><span>你比较擅长</span>{result.result.strengths.map((item) => <b key={item}>+ {item}</b>)}</div>
-            <div><span>容易踩的坑</span>{result.result.blindSpots.map((item) => <b key={item}>− {item}</b>)}</div>
+            <div><span>顺手的事</span>{result.result.strengths.map((item) => <b key={item}>+ {item}</b>)}</div>
+            <div><span>翻车现场</span>{result.result.blindSpots.map((item) => <b key={item}>− {item}</b>)}</div>
           </div>
         </article>
         <aside className="result-analysis">
-          <span className="section-label">SIGNAL / 为什么是你</span>
+          <span className="section-label">SIGNAL / 你是怎么暴露的</span>
           <div className="mbti-code">{result.mbti.preferences.map((item) => <span key={item.dimension}>{item.letter}</span>)}</div>
           {result.mbti.preferences.map((item) => (
             <div className="axis" key={item.dimension}>
@@ -276,7 +276,7 @@ function ResultScreen({ result, profiles, copied, onCopy, onDownload, onRetake, 
       </div>
       {neighborProfiles.length > 0 && (
         <div className="neighbors">
-          <span className="section-label">NEARBY / 你的相邻人格</span>
+          <span className="section-label">NEARBY / 你差点就是他们</span>
           <div>{neighborProfiles.map((profile) => <ProfileMini key={profile.code} profile={profile} onClick={() => onProfile(profile)} />)}</div>
         </div>
       )}
@@ -289,8 +289,8 @@ function Atlas({ main, special, onOpen, onStart }: { main: Profile[]; special: P
     <section className="atlas-wrap">
       <div className="atlas-heading">
         <div><span className="eyebrow">AITI PERSONALITY INDEX</span><h1>人格图鉴</h1></div>
-        <p>15 种常规人格，3 个隐藏彩蛋，以及一个系统实在看不懂你的结果。</p>
-        <button className="primary-button" onClick={onStart}>测测我是哪种 →</button>
+        <p>15 种常见症状，3 个隐藏彩蛋。还有一种：系统看完你的答案，沉默了。</p>
+        <button className="primary-button" onClick={onStart}>看看我是哪种 →</button>
       </div>
       <div className="atlas-section-title"><span>MAIN TYPES</span><strong>常规人格 / 15</strong></div>
       <div className="atlas-grid">
@@ -332,11 +332,11 @@ function ProfileModal({ profile, onClose }: { profile: Profile; onClose: () => v
           <span className="eyebrow">{profile.code} / {profile.type.toUpperCase()}</span>
           <h1>{profile.name}</h1>
           <h2>{profile.tagline}</h2>
-          <span className="modal-mbti">MBTI 式偏好近似：{profile.mbtiAnalogy}</span>
+          <span className="modal-mbti">大概接近 {profile.mbtiAnalogy} 的路数</span>
           <p>{profile.description}</p>
           <div className="modal-lists">
-            <div><span>你比较擅长</span>{profile.strengths.map((item) => <b key={item}>+ {item}</b>)}</div>
-            <div><span>容易踩的坑</span>{profile.blindSpots.map((item) => <b key={item}>− {item}</b>)}</div>
+            <div><span>顺手的事</span>{profile.strengths.map((item) => <b key={item}>+ {item}</b>)}</div>
+            <div><span>翻车现场</span>{profile.blindSpots.map((item) => <b key={item}>− {item}</b>)}</div>
           </div>
         </div>
       </article>
@@ -345,11 +345,11 @@ function ProfileModal({ profile, onClose }: { profile: Profile; onClose: () => v
 }
 
 function Footer() {
-  return <footer><span>AITI © 2026</span><p>互联网娱乐型自我观察测试。不是心理诊断，也别拿去招聘。</p><span>MADE WITH TOO MANY TOKENS</span></footer>;
+  return <footer><span>AITI © 2026</span><p>图一乐可以。拿去诊断或招聘，真不行。</p><span>MADE WITH TOO MANY TOKENS</span></footer>;
 }
 
 async function copyResult(result: ScoreResult) {
-  const text = `我的 AITI 人格是「${result.result.name}」${result.matchPercent ? `，匹配度 ${result.matchPercent}%` : ""}。\n${result.result.tagline}\nMBTI 式偏好：${result.mbti.code}\n你和 AI 到底是什么关系？来测 AITI：${window.location.origin}`;
+  const text = `测完 AITI，我居然是「${result.result.name}」${result.matchPercent ? `，有 ${result.matchPercent}% 像` : ""}。\n${result.result.tagline}\n顺便测出一个 ${result.mbti.code} 路数。\n你也来看看自己一用 AI 会变成谁：${window.location.origin}`;
   await navigator.clipboard.writeText(text);
 }
 
