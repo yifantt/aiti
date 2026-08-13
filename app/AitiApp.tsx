@@ -1,1 +1,1 @@
-@web/app/AitiApp.tsx
+@app/AitiApp.tsx
