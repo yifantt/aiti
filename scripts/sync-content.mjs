@@ -14,6 +14,9 @@ fs.copyFileSync(path.join(root, "test/test-spec.json"), path.join(appData, "test
 
 for (const file of fs.readdirSync(path.join(root, "profiles/images"))) {
   if (file.endsWith(".png")) {
-    fs.copyFileSync(path.join(root, "profiles/images", file), path.join(publicProfiles, file));
+    const target = path.join(publicProfiles, file);
+    if (!fs.existsSync(target)) {
+      fs.copyFileSync(path.join(root, "profiles/images", file), target);
+    }
   }
 }
