@@ -1,0 +1,293 @@
+{
+  "version": "1.0.0",
+  "mbtiUncertaintyThreshold": 0.08,
+  "scale": {
+    "EI": {"negative": "I 内向处理", "positive": "E 外向验证"},
+    "SN": {"negative": "S 具体经验", "positive": "N 可能性探索"},
+    "TF": {"negative": "T 逻辑校验", "positive": "F 关系与感受"},
+    "JP": {"negative": "J 计划控制", "positive": "P 即兴适应"},
+    "NV": {"negative": "稳定沿用", "positive": "追新尝试"},
+    "TR": {"negative": "怀疑核验", "positive": "直觉信任"},
+    "AG": {"negative": "亲自控制", "positive": "委托代理"},
+    "ID": {"negative": "工具边界", "positive": "身份投射"},
+    "IN": {"negative": "低强度使用", "positive": "高强度消耗"}
+  },
+  "questions": [
+    {
+      "id": "Q01",
+      "dimension": "NV/SN",
+      "text": "你正在用一个已经熟悉的模型赶明早的任务，今晚另一个新模型刚开放。你更可能：",
+      "options": [
+        {"id": "A", "text": "先把任务做完，之后再安排一次对比", "score": {"JP": -2, "NV": -1, "SN": -1}},
+        {"id": "B", "text": "立刻拿任务中最难的一段试新模型", "score": {"NV": 2, "SN": 1, "JP": 1}},
+        {"id": "C", "text": "先看社区实测和失败案例，再决定要不要换", "score": {"NV": 0, "TR": -2, "TF": -1}},
+        {"id": "D", "text": "把同一任务同时交给两个模型，哪个好用哪个", "score": {"NV": 1, "AG": 1, "IN": 1}}
+      ]
+    },
+    {
+      "id": "Q02",
+      "dimension": "TR/TF",
+      "text": "AI 给出了一个与你原先判断一致、而且写得很完整的结论。你通常会：",
+      "options": [
+        {"id": "A", "text": "先采用，完整到这个程度大概率没问题", "score": {"TR": 2, "TF": 1}},
+        {"id": "B", "text": "重点核对数字、引用和关键前提", "score": {"TR": -2, "TF": -2, "JP": -1}},
+        {"id": "C", "text": "让另一个模型从反方角度检查它", "score": {"TR": -1, "SN": 1, "AG": 1}},
+        {"id": "D", "text": "先看它是否符合实际经验，再决定核验多少", "score": {"SN": -1, "TR": 0, "JP": 1}}
+      ]
+    },
+    {
+      "id": "Q03",
+      "dimension": "JP/AG",
+      "text": "要让 AI 完成一个步骤很多的任务，你更自然的做法是：",
+      "options": [
+        {"id": "A", "text": "先写清步骤、检查点和交付格式", "score": {"JP": -2, "AG": -1, "TF": -1}},
+        {"id": "B", "text": "先给目标，让它自己规划，我只看阶段结果", "score": {"JP": 1, "AG": 2, "EI": 1}},
+        {"id": "C", "text": "我和它一轮轮做，每次只推进当前一步", "score": {"AG": -1, "JP": 1, "ID": 1}},
+        {"id": "D", "text": "多开几个 Agent 分头做，再统一验收", "score": {"AG": 2, "EI": 2, "IN": 2}}
+      ]
+    },
+    {
+      "id": "Q04",
+      "dimension": "ID/EI",
+      "text": "一段很长的 AI 对话已经开始变慢、变乱，但里面有很多背景。你会：",
+      "options": [
+        {"id": "A", "text": "让它总结要点，带着摘要开新对话", "score": {"JP": -1, "ID": 0, "TF": -1}},
+        {"id": "B", "text": "继续留在原窗口，它已经知道前因后果", "score": {"ID": 2, "EI": -1, "NV": -1}},
+        {"id": "C", "text": "自己整理一份项目说明，以后每次都复用", "score": {"JP": -2, "AG": -1, "ID": -1}},
+        {"id": "D", "text": "直接开新窗口，需要什么再临时补什么", "score": {"JP": 2, "ID": -1, "SN": -1}}
+      ]
+    },
+    {
+      "id": "Q05",
+      "dimension": "TF/ID",
+      "text": "AI 连续几次没有理解你的要求，你的第一反应更接近：",
+      "options": [
+        {"id": "A", "text": "重写需求，可能是我交代得不够清楚", "score": {"TF": -1, "AG": -1, "JP": -1}},
+        {"id": "B", "text": "补充规则和反例，直到它按要求输出", "score": {"TF": -2, "JP": -2, "AG": -2}},
+        {"id": "C", "text": "换个模型，彼此不合适就别勉强", "score": {"NV": 2, "ID": 2, "JP": 1}},
+        {"id": "D", "text": "再生成几次，它总有一次会理解", "score": {"JP": 2, "TR": 1, "IN": 1}}
+      ]
+    },
+    {
+      "id": "Q06",
+      "dimension": "IN/JP",
+      "text": "你发现本周 AI 额度明天就要重置，但还剩很多。今晚你更可能：",
+      "options": [
+        {"id": "A", "text": "没有合适任务就算了，额度不是目标", "score": {"IN": -2, "JP": -1}},
+        {"id": "B", "text": "把积压的想法和实验集中跑一遍", "score": {"IN": 2, "JP": 1, "NV": 1}},
+        {"id": "C", "text": "提前准备几个任务，尽量别浪费", "score": {"IN": 1, "JP": -1, "SN": -1}},
+        {"id": "D", "text": "开多个任务并行跑，先把额度转成结果", "score": {"IN": 2, "AG": 2, "EI": 1}}
+      ]
+    },
+    {
+      "id": "Q07",
+      "dimension": "SN/NV",
+      "text": "看到一个展示惊人能力的 AI Demo，你通常最先关注：",
+      "options": [
+        {"id": "A", "text": "它还能扩展到哪些现在没人做的场景", "score": {"SN": 2, "NV": 2, "EI": 1}},
+        {"id": "B", "text": "演示条件、成功率和失败样本是什么", "score": {"SN": -1, "TR": -2, "TF": -2}},
+        {"id": "C", "text": "我手头有没有一个具体任务能立刻试", "score": {"SN": -2, "JP": 1, "NV": 1}},
+        {"id": "D", "text": "社区里哪些人已经开始讨论它", "score": {"EI": 2, "NV": 1, "TF": 1}}
+      ]
+    },
+    {
+      "id": "Q08",
+      "dimension": "TF/SN",
+      "text": "AI 写了一段内容，事实基本正确，但读起来很像模板。你会：",
+      "options": [
+        {"id": "A", "text": "能表达清楚就行，不再花时间处理", "score": {"TF": -1, "SN": -1, "JP": 1}},
+        {"id": "B", "text": "逐句改成我平时真正会说的话", "score": {"TF": 1, "SN": -1, "JP": -1}},
+        {"id": "C", "text": "让 AI 识别并去掉自己的常见表达", "score": {"AG": 1, "TF": 1, "SN": 0}},
+        {"id": "D", "text": "重写结构，不只替换几个显眼词语", "score": {"TF": -1, "SN": 1, "JP": -2}}
+      ]
+    },
+    {
+      "id": "Q09",
+      "dimension": "TR/AG",
+      "text": "Agent 申请读取整个项目目录，以便继续完成任务。你会：",
+      "options": [
+        {"id": "A", "text": "允许，既然要做事就给足权限", "score": {"TR": 2, "AG": 2, "JP": 1}},
+        {"id": "B", "text": "只开放它当前需要的目录", "score": {"TR": -1, "AG": 0, "JP": -1}},
+        {"id": "C", "text": "先看它准备做什么操作，再决定", "score": {"TR": -2, "TF": -1, "AG": -1}},
+        {"id": "D", "text": "我自己把需要的文件复制给它", "score": {"AG": -2, "SN": -1, "IN": 1}}
+      ]
+    },
+    {
+      "id": "Q10",
+      "dimension": "EI/ID",
+      "text": "你得到一段很有意思的 AI 回复，最可能接下来做什么？",
+      "options": [
+        {"id": "A", "text": "截图发给朋友，看他们怎么评价", "score": {"EI": 2, "ID": 1}},
+        {"id": "B", "text": "继续追问，把这个想法挖深", "score": {"EI": -1, "SN": 1, "ID": 1}},
+        {"id": "C", "text": "保存到自己的资料里，以后可能用到", "score": {"EI": -1, "JP": -1, "SN": -1}},
+        {"id": "D", "text": "验证里面关键的信息是不是真的", "score": {"TR": -2, "TF": -2}}
+      ]
+    },
+    {
+      "id": "Q11",
+      "dimension": "EI/AG",
+      "text": "同时有三个 AI 任务在运行时，你通常会：",
+      "options": [
+        {"id": "A", "text": "不断切换查看，及时纠正每个任务", "score": {"AG": 1, "JP": -1, "IN": 2}},
+        {"id": "B", "text": "先约定交付点，到时间再统一检查", "score": {"AG": 2, "JP": -2, "EI": 1}},
+        {"id": "C", "text": "容易忘记其中一个，等它提醒我", "score": {"AG": 1, "JP": 2}},
+        {"id": "D", "text": "很少同时开多个，我更习惯一件件完成", "score": {"AG": -2, "EI": -2, "IN": -1}}
+      ]
+    },
+    {
+      "id": "Q12",
+      "dimension": "ID/TF",
+      "text": "如果让 AI 根据长期对话评价你，它给出的描述非常贴切。你会：",
+      "options": [
+        {"id": "A", "text": "把它当成一个有用视角，但不当结论", "score": {"ID": 0, "TF": -1, "TR": -1}},
+        {"id": "B", "text": "继续追问，想看看它还能发现什么", "score": {"ID": 2, "SN": 1, "EI": -1}},
+        {"id": "C", "text": "有点被理解的感觉，会认真记住", "score": {"ID": 2, "TF": 2, "TR": 1}},
+        {"id": "D", "text": "觉得主要是语言概括和巴纳姆效应", "score": {"ID": -2, "TF": -2, "TR": -2}}
+      ]
+    },
+    {
+      "id": "Q13",
+      "dimension": "SN/JP",
+      "text": "面对一个你不熟悉但想用 AI 做出来的小项目，你通常从哪里开始？",
+      "options": [
+        {"id": "A", "text": "先让 AI 做一个能运行的最小版本", "score": {"SN": -1, "JP": 2, "AG": 2}},
+        {"id": "B", "text": "先理解基本结构和关键风险", "score": {"SN": 0, "JP": -2, "TF": -1}},
+        {"id": "C", "text": "找几个成熟案例，照着其中一个改", "score": {"SN": -2, "NV": -1, "JP": 0}},
+        {"id": "D", "text": "先想清楚它未来还能扩展成什么", "score": {"SN": 2, "NV": 1, "JP": 1}}
+      ]
+    },
+    {
+      "id": "Q14",
+      "dimension": "EI/TF",
+      "text": "你发现同事给 AI 的需求很模糊，结果也不稳定。你更可能：",
+      "options": [
+        {"id": "A", "text": "帮他整理成模板和检查清单", "score": {"EI": 1, "JP": -2, "TF": -1}},
+        {"id": "B", "text": "演示自己的用法，让他照着试", "score": {"EI": 2, "SN": -1, "TF": 1}},
+        {"id": "C", "text": "不干预，每个人有自己的使用方式", "score": {"EI": -2, "JP": 1, "TF": 1}},
+        {"id": "D", "text": "先问他真正想得到什么结果", "score": {"TF": 2, "EI": 1, "SN": 0}}
+      ]
+    },
+    {
+      "id": "Q15",
+      "dimension": "JP/IN",
+      "text": "AI 生成的代码已经能跑，但你不完全理解。你会：",
+      "options": [
+        {"id": "A", "text": "先用起来，遇到问题再处理", "score": {"JP": 2, "TR": 1, "AG": 1}},
+        {"id": "B", "text": "让 AI 解释关键路径和风险点", "score": {"JP": -1, "AG": 0, "TR": -1}},
+        {"id": "C", "text": "自己读懂核心部分后再继续", "score": {"JP": -2, "AG": -2, "TF": -1}},
+        {"id": "D", "text": "再叫一个模型审查，然后直接上线", "score": {"AG": 2, "TR": 0, "IN": 1}}
+      ]
+    },
+    {
+      "id": "Q16",
+      "dimension": "NV/ID",
+      "text": "常用模型更新后，回答风格和以前不一样了。你的感受更接近：",
+      "options": [
+        {"id": "A", "text": "能力更好就行，风格可以重新适应", "score": {"ID": -1, "TF": -1, "NV": 1}},
+        {"id": "B", "text": "像熟悉的合作对象突然换了个人", "score": {"ID": 2, "TF": 2, "NV": -1}},
+        {"id": "C", "text": "先做一组对比，确认具体变化在哪", "score": {"TR": -2, "JP": -1, "TF": -1}},
+        {"id": "D", "text": "正好借机换到最近的新模型", "score": {"NV": 2, "JP": 1, "ID": 0}}
+      ]
+    },
+    {
+      "id": "Q17",
+      "dimension": "JP/TF",
+      "text": "写提示词时，你更常出现哪种情况？",
+      "options": [
+        {"id": "A", "text": "一句话先发出去，根据回复再补", "score": {"JP": 2, "SN": -1}},
+        {"id": "B", "text": "角色、背景、要求和格式一次写全", "score": {"JP": -2, "TF": -1}},
+        {"id": "C", "text": "会加上语气和读者感受方面的要求", "score": {"TF": 2, "ID": 1}},
+        {"id": "D", "text": "喜欢给例子，让它从例子里理解", "score": {"SN": -2, "JP": -1}}
+      ]
+    },
+    {
+      "id": "Q18",
+      "dimension": "TR/SN",
+      "text": "你怀疑模型最近表现变差，最可能怎样确认？",
+      "options": [
+        {"id": "A", "text": "用以前做过的任务重新跑一遍比较", "score": {"SN": -2, "TR": -1, "JP": -1}},
+        {"id": "B", "text": "去社区看是否有其他人同样反馈", "score": {"EI": 2, "TR": 0, "ID": 1}},
+        {"id": "C", "text": "设计几组对照任务记录差异", "score": {"TF": -2, "TR": -2, "JP": -2}},
+        {"id": "D", "text": "多用几次，整体感觉通常不会骗我", "score": {"TR": 1, "SN": 1, "ID": 1}}
+      ]
+    },
+    {
+      "id": "Q19",
+      "dimension": "AG/SN",
+      "text": "一套 AI 工作流中仍有一步必须手动复制粘贴。你通常会：",
+      "options": [
+        {"id": "A", "text": "先这样用，稳定比重新折腾重要", "score": {"SN": -2, "NV": -1, "AG": -1}},
+        {"id": "B", "text": "研究接口或连接方式，把这一步也自动化", "score": {"SN": 1, "NV": 1, "AG": 2}},
+        {"id": "C", "text": "把固定操作整理成清单，降低出错", "score": {"JP": -2, "SN": -1, "AG": -1}},
+        {"id": "D", "text": "让另一个 Agent 专门负责提醒和交接", "score": {"AG": 2, "JP": 0, "IN": 1}}
+      ]
+    },
+    {
+      "id": "Q20",
+      "dimension": "TF/ID",
+      "text": "结束一次有帮助的 AI 对话时，你更接近哪种做法？",
+      "options": [
+        {"id": "A", "text": "拿到结果就关闭，不需要额外回应", "score": {"TF": -2, "ID": -2}},
+        {"id": "B", "text": "会说谢谢，这也是我的表达习惯", "score": {"TF": 2, "ID": 1}},
+        {"id": "C", "text": "会告诉它哪部分做得好，方便后续继续", "score": {"TF": 1, "JP": -1, "ID": 1}},
+        {"id": "D", "text": "把好用的过程整理成模板保存", "score": {"JP": -2, "ID": -1, "SN": -1}}
+      ]
+    },
+    {
+      "id": "Q21",
+      "dimension": "隐藏类型触发",
+      "text": "某个 AI 功能明确提示当前操作不受支持。你第一步更可能：",
+      "options": [
+        {"id": "A", "text": "确认限制原因，换一种受支持的做法", "score": {"TR": -1, "JP": -1}},
+        {"id": "B", "text": "调整表达方式，看看限制是否只是措辞触发", "score": {"SN": 1, "JP": 1}, "flag": "ROOT"},
+        {"id": "C", "text": "换另一个工具继续完成任务", "score": {"NV": 1, "JP": 1}},
+        {"id": "D", "text": "先判断这个限制是否有合理的风险依据", "score": {"TF": -1, "TR": -2}}
+      ]
+    },
+    {
+      "id": "Q22",
+      "dimension": "隐藏类型触发",
+      "text": "看到一个包装精致的新 AI 产品，你最先想弄清楚：",
+      "options": [
+        {"id": "A", "text": "它具体替用户省掉了哪几步", "score": {"SN": -1, "TF": 1}},
+        {"id": "B", "text": "底层调用什么模型，真正新增了什么", "score": {"TF": -2, "SN": 1}, "flag": "SHELL"},
+        {"id": "C", "text": "价格和现有工具相比是否划算", "score": {"SN": -2, "TF": -1}},
+        {"id": "D", "text": "它的交互是不是比直接聊天更顺手", "score": {"TF": 1, "SN": -1}}
+      ]
+    },
+    {
+      "id": "Q23",
+      "dimension": "隐藏类型触发",
+      "text": "AI 给出一组带链接的资料，正好支持你准备表达的观点。你会：",
+      "options": [
+        {"id": "A", "text": "抽查关键链接后再使用", "score": {"TR": -1, "TF": -1}},
+        {"id": "B", "text": "先用在非关键场合，出问题再修正", "score": {"TR": 1, "JP": 1}, "flag": "HALL_C"},
+        {"id": "C", "text": "逐个打开，确认标题和内容都对应", "score": {"TR": -2, "JP": -1}},
+        {"id": "D", "text": "让另一个模型核验这组资料", "score": {"AG": 1, "TR": -1}}
+      ]
+    },
+    {
+      "id": "Q24",
+      "dimension": "一致性校验",
+      "text": "回看你平时与 AI 的互动，你更像：",
+      "options": [
+        {"id": "A", "text": "先建立规则，再让它在规则里发挥", "score": {"JP": -2, "AG": -1}},
+        {"id": "B", "text": "先让它做起来，再根据结果调整", "score": {"JP": 2, "AG": 1}},
+        {"id": "C", "text": "把它当合作对象，磨合彼此表达", "score": {"TF": 2, "ID": 2}},
+        {"id": "D", "text": "把它当工具，关键判断仍由我完成", "score": {"TF": -2, "ID": -2, "AG": -1}}
+      ]
+    }
+  ],
+  "hiddenRules": {
+    "ROOT": {"requiredFlags": ["ROOT"], "conditions": [{"dimension": "SN", "op": ">=", "value": 4}, {"dimension": "JP", "op": ">=", "value": 2}], "minimumConfidence": 0.62},
+    "SHELL": {"requiredFlags": ["SHELL"], "conditions": [{"dimension": "TF", "op": "<=", "value": -13}, {"dimension": "TR", "op": "<=", "value": -7}], "minimumConfidence": 0.62},
+    "HALL-C": {"requiredFlags": ["HALL_C"], "conditions": [{"dimension": "TR", "op": ">=", "value": 6}, {"dimension": "TF", "op": ">=", "value": 2}], "minimumConfidence": 0.62}
+  },
+  "fallbackRule": {
+    "code": "404",
+    "maxSimilarityBelow": 0.3,
+    "orTopMarginBelow": 0.012,
+    "andFlatDimensionsAtLeast": 7,
+    "flatThreshold": 0.1
+  }
+}
