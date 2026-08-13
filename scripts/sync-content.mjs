@@ -12,11 +12,5 @@ fs.mkdirSync(publicProfiles, { recursive: true });
 fs.copyFileSync(path.join(root, "profiles/profiles.json"), path.join(appData, "profiles.json"));
 fs.copyFileSync(path.join(root, "test/test-spec.json"), path.join(appData, "test-spec.json"));
 
-for (const file of fs.readdirSync(path.join(root, "profiles/images"))) {
-  if (file.endsWith(".png")) {
-    const target = path.join(publicProfiles, file);
-    if (!fs.existsSync(target)) {
-      fs.copyFileSync(path.join(root, "profiles/images", file), target);
-    }
-  }
-}
+// Web-optimized JPG profile assets are kept in public/profiles. Original PNGs
+// remain untouched in profiles/images and are only used as source artwork.

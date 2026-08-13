@@ -14,7 +14,7 @@ const AI_LABELS: Record<string, { label: string; negative: string; positive: str
   IN: { label: "使用强度", negative: "够用就停", positive: "额度榨干" },
 };
 
-const imagePath = (profile: Profile) => `/profiles/${profile.image.split("/").pop()}`;
+const imagePath = (profile: Profile) => `/profiles/${profile.image.split("/").pop()?.replace(/\.png$/i, ".jpg")}`;
 
 export default function AitiApp({ profiles, spec }: { profiles: Profile[]; spec: TestSpec }) {
   const initialProfile = typeof window === "undefined" || !window.location.hash.startsWith("#profile=")
